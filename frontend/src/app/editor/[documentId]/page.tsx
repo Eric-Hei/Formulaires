@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Eye, Share2, Check, BarChart3, Settings, Save } from "lucide-react";
+import { ArrowLeft, Eye, Share2, Check, BarChart3, Settings, Save, Users } from "lucide-react";
 import { FormEditor } from "@/components/editor/FormEditor";
 import { docsApi } from "@/lib/docs-api";
 import { formsApi } from "@/lib/forms-api";
@@ -65,6 +65,7 @@ export default function EditorPage() {
   };
 
   const shareUrl = `${process.env.NEXT_PUBLIC_APP_URL}/f/${documentId}`;
+  const docsUrl = `${process.env.NEXT_PUBLIC_DOCS_FRONTEND_URL}/${documentId}/`;
 
   if (loading) {
     return (
@@ -133,6 +134,16 @@ export default function EditorPage() {
                 </>
               )}
             </button>
+            <a
+              href={docsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-xs px-3 py-1.5"
+              aria-label="Donner l'accès à mes équipiers"
+            >
+              <Users className="h-3.5 w-3.5" aria-hidden="true" />
+              Donner l'accès à mes équipiers
+            </a>
             <Link
               href={`/f/${documentId}`}
               target="_blank"
